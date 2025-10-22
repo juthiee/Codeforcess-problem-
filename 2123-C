@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+using namespace std;
+// define  ll long long
+void my_function()
+{
+    long long n;
+    cin >> n;
+    vector<long long> v(n);
+    long long mn = 1e40, mx = -1;
+    for (auto &i : v)
+    {
+        cin >> i;
+        mn = min(mn, i);
+        mx = max(mx, i);
+    }
+    long long a = v[0];
+    int ind1 = 0, ind2 = 0;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        if (i == 0)
+        {
+            cout << "1";
+            ind1 = i;
+
+            if (v[0] == mn)
+                break;
+            continue;
+        }
+        if (v[i] < a)
+        {
+            cout << 1;
+            a = v[i];
+            ind1 = i;
+        }
+        else
+            cout << 0;
+        if (v[i] == mn)
+        {
+            ind1 = i;
+            break;
+        }
+    }
+    long long b = v[n - 1];
+    // cout<<b;
+    string s = "";
+    for (int i = n - 1; i > ind1; i--)
+    {
+        if (i == n - 1)
+        {
+            s += "1";
+            continue;
+        }
+
+    
+        if (v[i] > b)
+        {
+            s += "1";
+            b = v[i];
+            ind2 = i;
+        }
+        else
+            s += "0";
+    }
+    reverse(s.begin(), s.end());
+    cout << s<<"\n";
+    //cout << 1 << "\n";
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        my_function();
+    }
+}
